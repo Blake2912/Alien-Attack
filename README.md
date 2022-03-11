@@ -36,10 +36,10 @@ python3 main.py
 
 # Gameplay Images
 <br>
-<img src="../Alien-Attack/Game_Screenshots/gameplay_one.png"></img>
+<center><img src="Game_Screenshots/gameplay_one.png" width=800px height=600px></img></center>
 <br>
 <br>
-<img src="../Alien-Attack/Game_Screenshots/gameplay_two.png"></img>
+<center><img src="Game_Screenshots/gameplay_two.png" width=800px height=600px></img></center>
 <br>
 <br>
 <strong>Credits</strong>
