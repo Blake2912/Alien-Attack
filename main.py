@@ -1,6 +1,7 @@
 import pygame
 import random
 import math
+from pygame import mixer
 
 
 # Initialize of Pygame
@@ -11,6 +12,10 @@ screen = pygame.display.set_mode((800, 600))
 
 # Background
 background = pygame.image.load("background.png")
+
+# Background Sound
+# mixer.music.load('space_background.wav')
+# mixer.music.play(-1)
 
 # Title and Icon
 pygame.display.set_caption("Alien Attack")
@@ -34,8 +39,8 @@ for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load("ghost.png"))
     enemyX.append(random.randint(0,736))
     enemyY.append(random.randint(30,150))
-    enemyX_change.append(2)
-    enemyY_change.append(20)
+    enemyX_change.append(random.randint(2,10))
+    enemyY_change.append(15)
 
 
 # Bullet
@@ -52,6 +57,11 @@ score_value = 0
 font = pygame.font.Font('freesansbold.ttf',18)
 textX = 10
 textY = 10
+
+# Game over
+gameOverfont = pygame.font.Font('freesansbold.ttf',50)
+gameOverX = 250
+gameOverY = 250
 
 def player(x,y):
     screen.blit(playerImg,(x,y))
@@ -79,6 +89,12 @@ def isCollision(xEnemy,yEnemy,xBullet,yBullet):
     else:
         return False
 
+def game_over_text(x,y):
+    game_over_txt = gameOverfont.render("GAME OVER!",True,(255,255,255))
+    screen.blit(game_over_txt,(x,y))
+
+
+
 
 # Game Loop
 running = True
@@ -93,14 +109,17 @@ while running:
         # Checking keystroke events
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                playerX_change = -3
+                playerX_change = -5
             if event.key == pygame.K_RIGHT:
-                playerX_change = 3
+                playerX_change = 5
             # Close on Escape
             if event.key == pygame.K_ESCAPE:
                 running = False
             if event.key == pygame.K_SPACE:
                 if bulletState == "ready":
+                    # Shoot Sound
+                    # bullet_sound = mixer.Sound('shoot_sound.wav')
+                    # bullet_sound.play()
                     bulletX = playerX
                     fire_bullet(bulletX,bulletY)
             
@@ -117,14 +136,20 @@ while running:
     elif playerX >= 736:
         playerX = 736
     for i in range(num_of_enemies):
+        if enemyY[i] > 400:
+            for j in range(num_of_enemies):
+                enemyY[j] = 2000
+            game_over_text(gameOverX,gameOverY)
+            break
+
         enemyX[i] += enemyX_change[i]
 
         # Adding enemy game bondary
         if enemyX[i] <=0:
-            enemyX_change[i] = 2
+            enemyX_change[i] = random.randint(4,10)
             enemyY[i] += enemyY_change[i]
         elif enemyX[i] >= 736:
-            enemyX_change[i] = -2
+            enemyX_change[i] = -random.randint(4,10)
             enemyY[i] += enemyY_change[i]
 
         # Collision
