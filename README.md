@@ -4,7 +4,7 @@ You are a <strong>Warrior</strong> stranded in the emptiness of space and there 
 
 The more <STRONG>ALIENS</STRONG> you hit the more you <STRONG>SCORE!</STRONG>
 
-To move your `space craft` press the `left` and `right` arrow keys and to shoot press your `spacebar`
+To move your `space-craft` press the `left` and `right` arrow keys and to shoot press your `spacebar`
 
 
 To play this game follow the steps given below
@@ -31,18 +31,14 @@ pip install -r requirements.txt
 ```
 python3 main.py
 ```
-<br>
-<br>
-
 # Gameplay Images
 <br>
 <center><img src="Game_Screenshots/gameplay_one.png" width=800px height=600px></img></center>
 <br>
 <br>
 <center><img src="Game_Screenshots/gameplay_two.png" width=800px height=600px></img></center>
-<br>
-<br>
-<strong>Credits</strong>
+
+# Credits
 
 - This project was done using the <a href="https://github.com/pygame/pygame">pyGame</a> module.
   
